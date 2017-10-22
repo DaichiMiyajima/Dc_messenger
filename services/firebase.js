@@ -8,6 +8,7 @@ var firebase = function(config, setting){
     var serviceAccount = require(__dirname + "/../config/digitalcurrency-72f17-firebase-adminsdk-fu9sz-cb367e2a26.json");
     this.changeflg = 0;
     this.changeBalanceflg = 0;
+    this.changeAnalysis = 0;
     this.setting = setting;
     
     //to check if Firebase has already been initialized.
@@ -28,6 +29,8 @@ var firebase = function(config, setting){
         'getBalanceAllInfo',
         'referArray',
         'linenotify',
+        'changeAnalysisMonitor',
+        'analysis',
         'updateItem'
     );
 
@@ -98,6 +101,26 @@ firebase.prototype.linenotify = function(){
     this.FirebaseAccess.child(this.setting.linepass).on("child_added", function(snapshot) {
         var data = snapshot.val();
         this.emit("lineadd", data);
+    }.bind(this), function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+    });
+}
+
+firebase.prototype.changeAnalysisMonitor = function(){
+    this.FirebaseAccess.child(this.setting.analysispass).on("value", function(snapshot) {
+        this.changeAnalysis = 1;
+    }.bind(this), function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+    });
+}
+
+firebase.prototype.analysis = function(){
+    this.FirebaseAccess.child(this.setting.analysispass).once("value", function(snapshot) {
+        var data = snapshot.val();
+        if(this.changeAnalysis === 1){
+            this.emit("analysischange", data);
+            this.changeAnalysis = 0;
+        }
     }.bind(this), function (errorObject) {
         console.log("The read failed: " + errorObject.code);
     });

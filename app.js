@@ -39,6 +39,8 @@ setInterval(firebase.getOrderedAllInfo, 30 * 60 * 1000);
 firebase.changeBalance();
 setInterval(firebase.getBalanceAllInfo, 30 * 60 * 1000);
 firebase.linenotify();
+firebase.changeAnalysisMonitor();
+setInterval(firebase.analysis, 30 * 60 * 1000);
 
 firebase.on('getOrderedAllInfo', function(result){
    monitor.monitorcalculate(result,"2017-01-01","2020-12-31");
@@ -50,6 +52,15 @@ firebase.on('getBalanceAllInfo', function(result){
 
 firebase.on('lineadd', function(result){
     linenotify.notifyMonitor(result);
+});
+
+firebase.on('analysischange', function(result){
+    var data = {
+        message : JSON.stringify(result,undefined,4),
+        system : 'Analysis',
+        time : moment().format("YYYY-MM-DD HH:mm:ss")
+    };
+    linenotify.notifyMonitor(data);
 });
 
 app.post('/', function(req, res){

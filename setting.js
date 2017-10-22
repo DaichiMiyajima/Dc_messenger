@@ -10,6 +10,8 @@ setting.tradestatus = 'tradestatus';
 setting.tradestatuspass = setting.systempass + '/tradestatus';
 setting.requestpass = setting.systempass + '/Request';
 
+setting.analysispass = 'analysis';
+
 setting.thinkpass = setting.parentpass + 'think'
 setting.balancepass = setting.thinkpass + '/chart/balance';
 setting.notyetpass = setting.thinkpass + '/order';

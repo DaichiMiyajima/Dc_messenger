@@ -76,8 +76,8 @@ balance.prototype.balancecalculate = function(result,from,to){
         });
         var resultnum = Number(totalTo) - Number(totalFrom);
         result = result + tools.floor(resultnum, 8) +"\n";
-        messageFrom = messageFrom + "  total:" + tools.floor(totalFrom, 8) + "\n";
-        messageTo = messageTo + "  total:" + tools.floor(totalTo, 8) + "\n";
+        messageFrom = messageFrom + "  -----------------" + "\n" + "  total:" + tools.floor(totalFrom, 8) + "\n";
+        messageTo = messageTo + "  -----------------" + "\n" + "  total:" + tools.floor(totalTo, 8) + "\n";
     });
 
     message = result + "\n" + messageFrom + "\n" + messageTo;
