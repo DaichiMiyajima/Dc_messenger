@@ -43,11 +43,11 @@ firebase.changeAnalysisMonitor();
 setInterval(firebase.analysis, 30 * 60 * 1000);
 
 firebase.on('getOrderedAllInfo', function(result){
-   monitor.monitorcalculate(result,"2017-01-01","2020-12-31");
+   monitor.monitorcalculate(result,"2018-01-01","2030-12-31");
 });
 
 firebase.on('getBalanceAllInfo', function(result){
-   balance.balancecalculate(result,"2017-01-01","2020-12-31");
+   balance.balancecalculate(result,"2018-01-01","2030-12-31");
 });
 
 firebase.on('lineadd', function(result){
