@@ -148,7 +148,7 @@ app.post('/', function(req, res){
     }
 });
 
-var port = "3035";
+var port = "8080";
 app.set('port', port);
 
 module.exports = app;
