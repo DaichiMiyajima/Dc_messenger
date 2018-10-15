@@ -5,14 +5,14 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('blueMoon:server');
+var debug = require('debug')('Dc_messenger:server');
 var http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3035');
+var port = normalizePort(process.env.PORT || '3036');
 app.set('port', port);
 
 /**
